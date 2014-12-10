@@ -15,7 +15,6 @@
 		4F0A32E71A38764800147905 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F0A32E51A38764800147905 /* LaunchScreen.xib */; };
 		4F0A32F31A38764800147905 /* instaScrapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0A32F21A38764800147905 /* instaScrapTests.m */; };
 		4F0A32FD1A38768C00147905 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0A32FC1A38768C00147905 /* CoreImage.framework */; };
-		4F0A33001A3877EB00147905 /* JBCroppableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0A32FF1A3877EB00147905 /* JBCroppableImageView.m */; };
 		4F0A33041A38794B00147905 /* JBCroppableLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0A33031A38794B00147905 /* JBCroppableLayer.m */; };
 		4F0A33061A3879A800147905 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0A33051A3879A800147905 /* Foundation.framework */; };
 		4F0A33081A3879B000147905 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0A33071A3879B000147905 /* UIKit.framework */; };
@@ -48,8 +47,6 @@
 		4F0A32F11A38764800147905 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F0A32F21A38764800147905 /* instaScrapTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = instaScrapTests.m; sourceTree = "<group>"; };
 		4F0A32FC1A38768C00147905 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
-		4F0A32FE1A3877EB00147905 /* JBCroppableImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JBCroppableImageView.h; path = ../JBCroppableImageView.h; sourceTree = "<group>"; };
-		4F0A32FF1A3877EB00147905 /* JBCroppableImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JBCroppableImageView.m; path = ../JBCroppableImageView.m; sourceTree = "<group>"; };
 		4F0A33021A38794B00147905 /* JBCroppableLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBCroppableLayer.h; sourceTree = "<group>"; };
 		4F0A33031A38794B00147905 /* JBCroppableLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBCroppableLayer.m; sourceTree = "<group>"; };
 		4F0A33051A3879A800147905 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -83,14 +80,11 @@
 		4F0A32CA1A38764800147905 = {
 			isa = PBXGroup;
 			children = (
-				4F0A33091A3879BC00147905 /* QuartzCore.framework */,
-				4F0A33071A3879B000147905 /* UIKit.framework */,
-				4F0A33051A3879A800147905 /* Foundation.framework */,
 				4F0A33011A38794B00147905 /* JBCroppableView */,
-				4F0A32FC1A38768C00147905 /* CoreImage.framework */,
 				4F0A32D51A38764800147905 /* instaScrap */,
 				4F0A32EF1A38764800147905 /* instaScrapTests */,
 				4F0A32D41A38764800147905 /* Products */,
+				4F7A3CEB1A388DA200465A61 /* frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,8 +105,6 @@
 				4F0A32DD1A38764800147905 /* ViewController.h */,
 				4F0A32DE1A38764800147905 /* ViewController.m */,
 				4F0A330E1A387ED200147905 /* 10550967_10152442201708226_9066716860489306441_n.jpg */,
-				4F0A32FE1A3877EB00147905 /* JBCroppableImageView.h */,
-				4F0A32FF1A3877EB00147905 /* JBCroppableImageView.m */,
 				4F0A32E01A38764800147905 /* Main.storyboard */,
 				4F0A32E31A38764800147905 /* Images.xcassets */,
 				4F0A32E51A38764800147905 /* LaunchScreen.xib */,
@@ -154,6 +146,17 @@
 				4F0A33031A38794B00147905 /* JBCroppableLayer.m */,
 			);
 			path = JBCroppableView;
+			sourceTree = "<group>";
+		};
+		4F7A3CEB1A388DA200465A61 /* frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4F0A32FC1A38768C00147905 /* CoreImage.framework */,
+				4F0A33091A3879BC00147905 /* QuartzCore.framework */,
+				4F0A33071A3879B000147905 /* UIKit.framework */,
+				4F0A33051A3879A800147905 /* Foundation.framework */,
+			);
+			path = frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,7 +264,6 @@
 				4F0A33041A38794B00147905 /* JBCroppableLayer.m in Sources */,
 				4F0A32DC1A38764800147905 /* AppDelegate.m in Sources */,
 				4F0A32D91A38764800147905 /* main.m in Sources */,
-				4F0A33001A3877EB00147905 /* JBCroppableImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
