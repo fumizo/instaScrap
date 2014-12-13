@@ -14,6 +14,27 @@
 
 @implementation AppDelegate
 
+//clientId
+static NSString * const kOauth2ClientClientId = @"xxx"; //クライアントIDを設定
+//Client Secret
+static NSString * const kOauth2ClientClientSecret = @"xxx"; //クライアントシークレットを設定
+
++ (void)initialize {
+    
+    NSString *authUrl = [kOauth2ClientBaseUrl stringByAppendingString:kOauth2ClientAuthUrl];
+    NSString *tokenUrl = [kOauth2ClientBaseUrl stringByAppendingString:kOauth2ClientTokenUrl];
+    
+    [[NXOAuth2AccountStore sharedStore] setClientID:kOauth2ClientClientId
+                                             secret:kOauth2ClientClientSecret
+                                              scope:[NSSet setWithObjects:kOauth2ClientScopeUrl, nil]
+                                   authorizationURL:[NSURL URLWithString:authUrl]
+                                           tokenURL:[NSURL URLWithString:tokenUrl]
+                                        redirectURL:[NSURL URLWithString:kOauth2ClientRedirectUrl]
+                                      keyChainGroup:@"hoge"
+                                     forAccountType:kOauth2ClientAccountType];
+    
+}
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
