@@ -63,10 +63,10 @@
             </objects>
             <point key="canvasLocation" x="-523" y="348"/>
         </scene>
-        <!--View Controller-->
+        <!--On Web View View Controller-->
         <scene sceneID="tgU-aB-U62">
             <objects>
-                <viewController id="iWe-Rr-ia2" sceneMemberID="viewController">
+                <viewController id="iWe-Rr-ia2" customClass="OnWebViewViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Etj-cV-2Aa"/>
                         <viewControllerLayoutGuide type="bottom" id="gHX-lx-7OG"/>
