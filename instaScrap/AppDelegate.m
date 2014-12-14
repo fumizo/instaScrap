@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "NXOAuth2.h"
 
 @interface AppDelegate ()
 
@@ -14,7 +15,37 @@
 
 @implementation AppDelegate
 
+//for Feedly Oauth2(sandbox)
+//account type
+static NSString * const kOauth2ClientAccountType = @"Feedly";
+//clientId
+static NSString * const kOauth2ClientClientId = @"sandbox";
+//Client Secret
+static NSString * const kOauth2ClientClientSecret = @"CLIENTSECRET";
+//Redirect Url
+static NSString * const kOauth2ClientRedirectUrl = @"http://localhost";
+//base url
+static NSString * const kOauth2ClientBaseUrl = @"https://sandbox.feedly.com";
+//auth url
+static NSString * const kOauth2ClientAuthUrl = @"/v3/auth/auth";
+//token url
+static NSString * const kOauth2ClientTokenUrl = @"/v3/auth/token";
+//scope url
+static NSString * const kOauth2ClientScopeUrl = @"https://cloud.feedly.com/subscriptions";
 
++ (void)initialize {
+    NSString *authUrl = [kOauth2ClientBaseUrl stringByAppendingString:kOauth2ClientAuthUrl];
+    NSString *tokenUrl = [kOauth2ClientBaseUrl stringByAppendingString:kOauth2ClientTokenUrl];
+    
+    //setup oauth2client
+    [[NXOAuth2AccountStore sharedStore] setClientID:kOauth2ClientClientId
+                                             secret:kOauth2ClientClientSecret
+                                              scope:[NSSet setWithObjects:kOauth2ClientScopeUrl, nil]
+                                   authorizationURL:[NSURL URLWithString:authUrl]
+                                           tokenURL:[NSURL URLWithString:tokenUrl]
+                                        redirectURL:[NSURL URLWithString:kOauth2ClientRedirectUrl]
+                                     forAccountType:kOauth2ClientAccountType];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
