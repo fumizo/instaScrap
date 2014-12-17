@@ -15,6 +15,7 @@
 
 @implementation AppDelegate
 
+//クライアントシークレットをかえる
 //for Feedly Oauth2(sandbox)
 //account type
 static NSString * const kOauth2ClientAccountType = @"Feedly";

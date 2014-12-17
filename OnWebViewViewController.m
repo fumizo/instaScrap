@@ -8,21 +8,17 @@
 
 #import "OnWebViewViewController.h"
 #import "NXOAuth2.h"
-#import "AppDelegate.h"
+#import "NTAppDelegate.h"
 
 @interface OnWebViewViewController ()<uiwebviewdelegate>
-
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (strong, nonatomic) id successObserver;
 @property (strong, nonatomic) id failObserver;
 </uiwebviewdelegate>
+
 @end
 
 @implementation OnWebViewViewController
-
-
-
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
