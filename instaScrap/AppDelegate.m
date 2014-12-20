@@ -39,6 +39,7 @@ static NSString * const kOauth2ClientScopeUrl = @"https://cloud.feedly.com/subsc
     NSString *tokenUrl = [kOauth2ClientBaseUrl stringByAppendingString:kOauth2ClientTokenUrl];
     
     //setup oauth2client
+    
     [[NXOAuth2AccountStore sharedStore] setClientID:kOauth2ClientClientId
                                              secret:kOauth2ClientClientSecret
                                               scope:[NSSet setWithObjects:kOauth2ClientScopeUrl, nil]
@@ -46,6 +47,8 @@ static NSString * const kOauth2ClientScopeUrl = @"https://cloud.feedly.com/subsc
                                            tokenURL:[NSURL URLWithString:tokenUrl]
                                         redirectURL:[NSURL URLWithString:kOauth2ClientRedirectUrl]
                                      forAccountType:kOauth2ClientAccountType];
+    
+    
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
