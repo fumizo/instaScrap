@@ -18,8 +18,6 @@
     
 }
 
-
-/*==クラップするやつ==*/
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
