@@ -42,22 +42,19 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VYL-KR-rrf">
                                 <rect key="frame" x="115" y="401" width="90" height="90"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hrh-3D-ms4">
+                                <rect key="frame" x="197" y="518" width="107" height="30"/>
+                                <state key="normal" title="Get Information">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1mN-Bd-eUc">
-                                <rect key="frame" x="49" y="392" width="47" height="30"/>
+                                <rect key="frame" x="58" y="518" width="47" height="30"/>
                                 <state key="normal" title="Sign in">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="xbJ-OS-gvb" kind="push" id="FZF-OW-404"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hrh-3D-ms4">
-                                <rect key="frame" x="197" y="392" width="107" height="30"/>
-                                <state key="normal" title="Get Information">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="getInfomation:" destination="Rqz-D6-hzq" eventType="touchUpInside" id="TmA-Wg-rPK"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -105,6 +102,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LPy-1b-OGs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="72" y="180"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="gib-Uq-6Av">
+            <objects>
+                <viewController id="hCq-PW-pfd" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hYf-ie-nMZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="n9I-Y7-L39"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Pi7-oH-5bP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hd7-eL-QaD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="528" y="180"/>
         </scene>
     </scenes>
 </document>
