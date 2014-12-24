@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+extern NSString * const kOauth2ClientAccountType;
 
 @end
 

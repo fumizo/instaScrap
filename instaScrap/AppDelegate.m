@@ -18,27 +18,26 @@
 //クライアントシークレットをかえる
 //for Feedly Oauth2(sandbox)
 //account type
-static NSString * const kOauth2ClientAccountType = @"Feedly";
+NSString * const kOauth2ClientAccountType = @"Instagram";
 //clientId
-static NSString * const kOauth2ClientClientId = @"sandbox";
+static NSString * const kOauth2ClientClientId = @"87729182a83e45a5aa2d4651a95726e6";
 //Client Secret
-static NSString * const kOauth2ClientClientSecret = @"CLIENTSECRET";
+static NSString * const kOauth2ClientClientSecret = @"0f9b320aabdc449ba5b510f6287939da";
 //Redirect Url
-static NSString * const kOauth2ClientRedirectUrl = @"http://localhost";
+static NSString * const kOauth2ClientRedirectUrl = @"https://twitter.com/sun818sun";
 //base url
-static NSString * const kOauth2ClientBaseUrl = @"https://sandbox.feedly.com";
+static NSString * const kOauth2ClientBaseUrl = @"https://api.instagram.com/oauth";
 //auth url
-static NSString * const kOauth2ClientAuthUrl = @"/v3/auth/auth";
+static NSString * const kOauth2ClientAuthUrl = @"/authorize";
 //token url
-static NSString * const kOauth2ClientTokenUrl = @"/v3/auth/token";
+static NSString * const kOauth2ClientTokenUrl = @"/access_token";
 //scope url
-static NSString * const kOauth2ClientScopeUrl = @"https://cloud.feedly.com/subscriptions";
+static NSString * const kOauth2ClientScopeUrl = @"basic";
 
 + (void)initialize {
+    
     NSString *authUrl = [kOauth2ClientBaseUrl stringByAppendingString:kOauth2ClientAuthUrl];
     NSString *tokenUrl = [kOauth2ClientBaseUrl stringByAppendingString:kOauth2ClientTokenUrl];
-    
-    //setup oauth2client
     
     [[NXOAuth2AccountStore sharedStore] setClientID:kOauth2ClientClientId
                                              secret:kOauth2ClientClientSecret
@@ -46,8 +45,8 @@ static NSString * const kOauth2ClientScopeUrl = @"https://cloud.feedly.com/subsc
                                    authorizationURL:[NSURL URLWithString:authUrl]
                                            tokenURL:[NSURL URLWithString:tokenUrl]
                                         redirectURL:[NSURL URLWithString:kOauth2ClientRedirectUrl]
+                                      keyChainGroup:@"instaScrap"
                                      forAccountType:kOauth2ClientAccountType];
-    
     
 }
 

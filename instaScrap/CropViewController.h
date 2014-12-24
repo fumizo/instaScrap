@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 
 @class JBCroppableImageView;
-@interface ViewController : UIViewController
+@interface CropViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIButton *cropButton;
 @property (weak, nonatomic) IBOutlet UIButton *undoButton;

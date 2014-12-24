@@ -7,10 +7,10 @@
 //
 
 
-#import "ViewController.h"
+#import "CropViewController.h"
 #import "JBCroppableImageView.h"
 
-@implementation ViewController
+@implementation CropViewController
 
 - (void)viewDidLoad
 {
@@ -18,17 +18,17 @@
     
 }
 
+
+/*==クラップするやつ==*/
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-
 - (IBAction)cropTapped:(id)sender
 {
     [self.image crop];
-    
 }
 
 - (IBAction)undoTapped:(id)sender
