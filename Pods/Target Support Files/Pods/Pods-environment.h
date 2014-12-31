@@ -48,11 +48,53 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 5
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 0
 
+// CMDQueryStringSerialization
+#define COCOAPODS_POD_AVAILABLE_CMDQueryStringSerialization
+#define COCOAPODS_VERSION_MAJOR_CMDQueryStringSerialization 0
+#define COCOAPODS_VERSION_MINOR_CMDQueryStringSerialization 3
+#define COCOAPODS_VERSION_PATCH_CMDQueryStringSerialization 2
+
+// ISO8601
+#define COCOAPODS_POD_AVAILABLE_ISO8601
+#define COCOAPODS_VERSION_MAJOR_ISO8601 0
+#define COCOAPODS_VERSION_MINOR_ISO8601 1
+#define COCOAPODS_VERSION_PATCH_ISO8601 1
+
+// MBProgressHUD
+#define COCOAPODS_POD_AVAILABLE_MBProgressHUD
+#define COCOAPODS_VERSION_MAJOR_MBProgressHUD 0
+#define COCOAPODS_VERSION_MINOR_MBProgressHUD 9
+#define COCOAPODS_VERSION_PATCH_MBProgressHUD 0
+
 // NXOAuth2Client
 #define COCOAPODS_POD_AVAILABLE_NXOAuth2Client
 #define COCOAPODS_VERSION_MAJOR_NXOAuth2Client 1
 #define COCOAPODS_VERSION_MINOR_NXOAuth2Client 2
 #define COCOAPODS_VERSION_PATCH_NXOAuth2Client 6
+
+// ReactiveCocoa
+#define COCOAPODS_POD_AVAILABLE_ReactiveCocoa
+#define COCOAPODS_VERSION_MAJOR_ReactiveCocoa 2
+#define COCOAPODS_VERSION_MINOR_ReactiveCocoa 4
+#define COCOAPODS_VERSION_PATCH_ReactiveCocoa 2
+
+// ReactiveCocoa/Core
+#define COCOAPODS_POD_AVAILABLE_ReactiveCocoa_Core
+#define COCOAPODS_VERSION_MAJOR_ReactiveCocoa_Core 2
+#define COCOAPODS_VERSION_MINOR_ReactiveCocoa_Core 4
+#define COCOAPODS_VERSION_PATCH_ReactiveCocoa_Core 2
+
+// ReactiveCocoa/UI
+#define COCOAPODS_POD_AVAILABLE_ReactiveCocoa_UI
+#define COCOAPODS_VERSION_MAJOR_ReactiveCocoa_UI 2
+#define COCOAPODS_VERSION_MINOR_ReactiveCocoa_UI 4
+#define COCOAPODS_VERSION_PATCH_ReactiveCocoa_UI 2
+
+// ReactiveCocoa/no-arc
+#define COCOAPODS_POD_AVAILABLE_ReactiveCocoa_no_arc
+#define COCOAPODS_VERSION_MAJOR_ReactiveCocoa_no_arc 2
+#define COCOAPODS_VERSION_MINOR_ReactiveCocoa_no_arc 4
+#define COCOAPODS_VERSION_PATCH_ReactiveCocoa_no_arc 2
 
 // SDWebImage
 #define COCOAPODS_POD_AVAILABLE_SDWebImage
@@ -65,4 +107,28 @@
 #define COCOAPODS_VERSION_MAJOR_SDWebImage_Core 3
 #define COCOAPODS_VERSION_MINOR_SDWebImage_Core 7
 #define COCOAPODS_VERSION_PATCH_SDWebImage_Core 1
+
+// SVProgressHUD
+#define COCOAPODS_POD_AVAILABLE_SVProgressHUD
+#define COCOAPODS_VERSION_MAJOR_SVProgressHUD 1
+#define COCOAPODS_VERSION_MINOR_SVProgressHUD 1
+#define COCOAPODS_VERSION_PATCH_SVProgressHUD 2
+
+// SimpleAuth/Core
+#define COCOAPODS_POD_AVAILABLE_SimpleAuth_Core
+#define COCOAPODS_VERSION_MAJOR_SimpleAuth_Core 0
+#define COCOAPODS_VERSION_MINOR_SimpleAuth_Core 3
+#define COCOAPODS_VERSION_PATCH_SimpleAuth_Core 6
+
+// SimpleAuth/Instagram
+#define COCOAPODS_POD_AVAILABLE_SimpleAuth_Instagram
+#define COCOAPODS_VERSION_MAJOR_SimpleAuth_Instagram 0
+#define COCOAPODS_VERSION_MINOR_SimpleAuth_Instagram 3
+#define COCOAPODS_VERSION_PATCH_SimpleAuth_Instagram 6
+
+// SimpleAuth/UI
+#define COCOAPODS_POD_AVAILABLE_SimpleAuth_UI
+#define COCOAPODS_VERSION_MAJOR_SimpleAuth_UI 0
+#define COCOAPODS_VERSION_MINOR_SimpleAuth_UI 3
+#define COCOAPODS_VERSION_PATCH_SimpleAuth_UI 6
 
