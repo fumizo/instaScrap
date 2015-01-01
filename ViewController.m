@@ -7,6 +7,10 @@
 //
 
 #import "ViewController.h"
+#import "ViewController.h"
+#import "APIManager.h"
+#import "AFNetworking.h"
+#import <SimpleAuth.h>
 
 @interface ViewController ()
 

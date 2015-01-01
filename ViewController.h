@@ -13,12 +13,17 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @interface ViewController : UIViewController<UITableViewDataSource,SDWebImageManagerDelegate>
+
+
+@property (nonatomic) NSString *instagramToken;
+
+/*
 @property (weak, nonatomic) IBOutlet UITableView *authTableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 - (IBAction)editAction:(id)sender;
 - (IBAction)getInfomation:(id)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-
+*/
 
 
 @end

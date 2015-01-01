@@ -61,6 +61,7 @@
 		4F0A330E1A387ED200147905 /* 10550967_10152442201708226_9066716860489306441_n.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 10550967_10152442201708226_9066716860489306441_n.jpg; path = ../10550967_10152442201708226_9066716860489306441_n.jpg; sourceTree = "<group>"; };
 		4F7A3CEC1A388E5F00465A61 /* JBCroppableImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JBCroppableImageView.h; path = ../instaScrap/JBCroppableImageView.h; sourceTree = "<group>"; };
 		4F7A3CED1A388E5F00465A61 /* JBCroppableImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JBCroppableImageView.m; path = ../instaScrap/JBCroppableImageView.m; sourceTree = "<group>"; };
+		4F8BCD3F1A5593DF00659A5E /* APIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
 		4FD56FC61A4950F50069FAD4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		4FD56FC81A4951870069FAD4 /* AuthWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthWebViewController.h; path = ../AuthWebViewController.h; sourceTree = "<group>"; };
 		4FD56FC91A4951870069FAD4 /* AuthWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AuthWebViewController.m; path = ../AuthWebViewController.m; sourceTree = "<group>"; };
@@ -97,6 +98,7 @@
 		4F0A32CA1A38764800147905 = {
 			isa = PBXGroup;
 			children = (
+				4F8BCD3F1A5593DF00659A5E /* APIManager.h */,
 				4F0A33011A38794B00147905 /* JBCroppableView */,
 				4F0A32D51A38764800147905 /* instaScrap */,
 				4F0A32EF1A38764800147905 /* instaScrapTests */,

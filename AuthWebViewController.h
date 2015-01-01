@@ -6,6 +6,7 @@
 //  Copyright (c) 2014年 山本文子. All rights reserved.
 //
 
+/*   =========simple oauthを使うからwebviewのメソッドはいらないかなっていう==========
 #import <UIKit/UIKit.h>
 #import "NXOAuth2.h"
 #import "AppDelegate.h"
@@ -15,3 +16,5 @@
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @end
+ 
+*/

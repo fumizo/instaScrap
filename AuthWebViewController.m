@@ -6,6 +6,10 @@
 //  Copyright (c) 2014年 山本文子. All rights reserved.
 //
 
+
+/*   =========simple oauthを使うからwebviewのメソッドはいらないかなっていう==========
+
+
 #import "AuthWebViewController.h"
 #import "AppDelegate.h"
 
@@ -124,3 +128,6 @@
 }
 
 @end
+ 
+ 
+*/
