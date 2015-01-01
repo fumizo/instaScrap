@@ -13,7 +13,7 @@
 /* ここ自分で変えてね */
 #define CLIENT_ID @"87729182a83e45a5aa2d4651a95726e6"
 #define CLIENT_SECRET @"0f9b320aabdc449ba5b510f6287939da"
-#define REDIRECT_URI @"scheme://api_sampler"
+#define REDIRECT_URI @"https://twitter.com/sun818sun"
 
 
 
