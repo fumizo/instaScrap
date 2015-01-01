@@ -22,8 +22,8 @@
 		4F0A330A1A3879BC00147905 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0A33091A3879BC00147905 /* QuartzCore.framework */; };
 		4F0A330F1A387ED200147905 /* 10550967_10152442201708226_9066716860489306441_n.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F0A330E1A387ED200147905 /* 10550967_10152442201708226_9066716860489306441_n.jpg */; };
 		4F7A3CEE1A388E5F00465A61 /* JBCroppableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7A3CED1A388E5F00465A61 /* JBCroppableImageView.m */; };
+		4F8BCD421A55A33C00659A5E /* UserDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8BCD411A55A33C00659A5E /* UserDataManager.m */; };
 		4FD56FC71A4950F50069FAD4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FD56FC61A4950F50069FAD4 /* Security.framework */; };
-		4FD56FCA1A4951870069FAD4 /* AuthWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD56FC91A4951870069FAD4 /* AuthWebViewController.m */; };
 		4FD56FCD1A4951E70069FAD4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD56FCC1A4951E70069FAD4 /* ViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -61,10 +61,10 @@
 		4F0A330E1A387ED200147905 /* 10550967_10152442201708226_9066716860489306441_n.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 10550967_10152442201708226_9066716860489306441_n.jpg; path = ../10550967_10152442201708226_9066716860489306441_n.jpg; sourceTree = "<group>"; };
 		4F7A3CEC1A388E5F00465A61 /* JBCroppableImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JBCroppableImageView.h; path = ../instaScrap/JBCroppableImageView.h; sourceTree = "<group>"; };
 		4F7A3CED1A388E5F00465A61 /* JBCroppableImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JBCroppableImageView.m; path = ../instaScrap/JBCroppableImageView.m; sourceTree = "<group>"; };
-		4F8BCD3F1A5593DF00659A5E /* APIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
+		4F8BCD3F1A5593DF00659A5E /* APIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = APIManager.h; path = ../APIManager.h; sourceTree = "<group>"; };
+		4F8BCD401A55A33C00659A5E /* UserDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserDataManager.h; path = ../UserDataManager.h; sourceTree = "<group>"; };
+		4F8BCD411A55A33C00659A5E /* UserDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserDataManager.m; path = ../UserDataManager.m; sourceTree = "<group>"; };
 		4FD56FC61A4950F50069FAD4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		4FD56FC81A4951870069FAD4 /* AuthWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthWebViewController.h; path = ../AuthWebViewController.h; sourceTree = "<group>"; };
-		4FD56FC91A4951870069FAD4 /* AuthWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AuthWebViewController.m; path = ../AuthWebViewController.m; sourceTree = "<group>"; };
 		4FD56FCB1A4951E70069FAD4 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../ViewController.h; sourceTree = "<group>"; };
 		4FD56FCC1A4951E70069FAD4 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../ViewController.m; sourceTree = "<group>"; };
 		9B6EDC0D6DA39BE482A2E3A0 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -98,7 +98,6 @@
 		4F0A32CA1A38764800147905 = {
 			isa = PBXGroup;
 			children = (
-				4F8BCD3F1A5593DF00659A5E /* APIManager.h */,
 				4F0A33011A38794B00147905 /* JBCroppableView */,
 				4F0A32D51A38764800147905 /* instaScrap */,
 				4F0A32EF1A38764800147905 /* instaScrapTests */,
@@ -120,12 +119,13 @@
 		4F0A32D51A38764800147905 /* instaScrap */ = {
 			isa = PBXGroup;
 			children = (
+				4F8BCD3F1A5593DF00659A5E /* APIManager.h */,
+				4F8BCD401A55A33C00659A5E /* UserDataManager.h */,
+				4F8BCD411A55A33C00659A5E /* UserDataManager.m */,
 				4F0A32DA1A38764800147905 /* AppDelegate.h */,
 				4F0A32DB1A38764800147905 /* AppDelegate.m */,
 				4FD56FCB1A4951E70069FAD4 /* ViewController.h */,
 				4FD56FCC1A4951E70069FAD4 /* ViewController.m */,
-				4FD56FC81A4951870069FAD4 /* AuthWebViewController.h */,
-				4FD56FC91A4951870069FAD4 /* AuthWebViewController.m */,
 				4F0A32DD1A38764800147905 /* CropViewController.h */,
 				4F0A32DE1A38764800147905 /* CropViewController.m */,
 				4F0A330E1A387ED200147905 /* 10550967_10152442201708226_9066716860489306441_n.jpg */,
@@ -340,10 +340,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F8BCD421A55A33C00659A5E /* UserDataManager.m in Sources */,
 				4F7A3CEE1A388E5F00465A61 /* JBCroppableImageView.m in Sources */,
 				4F0A32DF1A38764800147905 /* CropViewController.m in Sources */,
 				4F0A33041A38794B00147905 /* JBCroppableLayer.m in Sources */,
-				4FD56FCA1A4951870069FAD4 /* AuthWebViewController.m in Sources */,
 				4F0A32DC1A38764800147905 /* AppDelegate.m in Sources */,
 				4F0A32D91A38764800147905 /* main.m in Sources */,
 				4FD56FCD1A4951E70069FAD4 /* ViewController.m in Sources */,
