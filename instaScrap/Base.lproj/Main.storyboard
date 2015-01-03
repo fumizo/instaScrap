@@ -1,28 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xbJ-OS-gvb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zi1-N6-pEh">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
-        <!--Auth Web View Controller-->
-        <scene sceneID="tT4-CS-TLL">
+        <!--View Controller-->
+        <scene sceneID="4PV-e7-J1N">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LPy-1b-OGs" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="xbJ-OS-gvb" customClass="AuthWebViewController" sceneMemberID="viewController">
+                <viewController id="zi1-N6-pEh" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Ng6-qx-zdi"/>
-                        <viewControllerLayoutGuide type="bottom" id="ZFn-1A-sg3"/>
+                        <viewControllerLayoutGuide type="top" id="jGY-OR-1Bj"/>
+                        <viewControllerLayoutGuide type="bottom" id="sW3-bs-Iar"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="rqa-ad-cgl">
+                    <view key="view" contentMode="scaleToFill" id="Kul-ZD-R9h">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YOD-Oh-W4R">
+                                <rect key="frame" x="111" y="269" width="46" height="30"/>
+                                <state key="normal" title="logOut">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logOut" destination="zi1-N6-pEh" eventType="touchUpInside" id="Ch3-rK-Itb"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="LTE-fg-y3s"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yc8-k0-tKl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="72" y="180"/>
+            <point key="canvasLocation" x="103" y="180"/>
         </scene>
         <!--Crop View Controller-->
         <scene sceneID="gib-Uq-6Av">

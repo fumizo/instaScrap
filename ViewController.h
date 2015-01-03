@@ -12,11 +12,10 @@
 #import "AFNetworking.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
-@interface ViewController : UIViewController<UITableViewDataSource,SDWebImageManagerDelegate>
-
+@interface ViewController : UIViewController
 
 @property (nonatomic) NSString *instagramToken;
 
-
+- (IBAction)logOut;
 
 @end
