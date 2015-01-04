@@ -231,5 +231,47 @@
     return cell;
 }
 
+#pragma mark - TableView Delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
+
+
+#pragma mark - Like
+
+- (void)postLike:(UIButton *)button event:(id)event
+{
+    NSSet *touches = [event allTouches];
+    UITouch *touch = [touches anyObject];
+    CGPoint currentTouchPosition = [touch locationInView:homeTableView];
+    NSIndexPath *indexPath = [homeTableView indexPathForRowAtPoint: currentTouchPosition];
+    
+    if ([UserDataManager sharedManager].token) {
+        
+        /* For Using POST/DELETE API, You have to prepare IP Adress|Hashed-Client Secret */
+        NSString *param = @"200.15.1.1|7e3c45bc34f56fd8e762ee4590a53c8c2bbce27e967a85484712e5faa0191688";
+#warning This Paramater is a Sample param. You must change here, when you use.
+        
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        [manager.requestSerializer setValue:param forHTTPHeaderField:@"X-Insta-Forwarded-For"];
+        NSString *mediaID = [NSString stringWithFormat:@"https://api.instagram.com/v1/media/%@/likes", idArray[indexPath.row]];
+        
+        [manager POST:mediaID parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"%@", responseObject);
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error: %@", error.description);
+        }];
+        
+    } else {
+        [self loginWithInstagram];
+    }
+}
+
 
 @end
