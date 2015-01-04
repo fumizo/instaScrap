@@ -15,43 +15,9 @@
 
 @implementation AppDelegate
 
-//クライアントシークレットをかえる
-//for Feedly Oauth2(sandbox)
-//account type
-NSString * const kOauth2ClientAccountType = @"Instagram";
-//clientId
-static NSString * const kOauth2ClientClientId = @"87729182a83e45a5aa2d4651a95726e6";
-//Client Secret
-static NSString * const kOauth2ClientClientSecret = @"0f9b320aabdc449ba5b510f6287939da";
-//Redirect Url
-static NSString * const kOauth2ClientRedirectUrl = @"https://twitter.com/sun818sun";
-//base url
-static NSString * const kOauth2ClientBaseUrl = @"https://api.instagram.com/oauth";
-//auth url
-static NSString * const kOauth2ClientAuthUrl = @"/authorize";
-//token url
-static NSString * const kOauth2ClientTokenUrl = @"/access_token";
-//scope url
-static NSString * const kOauth2ClientScopeUrl = @"basic";
-
-+ (void)initialize {
-    
-    NSString *authUrl = [kOauth2ClientBaseUrl stringByAppendingString:kOauth2ClientAuthUrl];
-    NSString *tokenUrl = [kOauth2ClientBaseUrl stringByAppendingString:kOauth2ClientTokenUrl];
-    
-    [[NXOAuth2AccountStore sharedStore] setClientID:kOauth2ClientClientId
-                                             secret:kOauth2ClientClientSecret
-                                              scope:[NSSet setWithObjects:kOauth2ClientScopeUrl, nil]
-                                   authorizationURL:[NSURL URLWithString:authUrl]
-                                           tokenURL:[NSURL URLWithString:tokenUrl]
-                                        redirectURL:[NSURL URLWithString:kOauth2ClientRedirectUrl]
-                                      keyChainGroup:@"instaScrap"
-                                     forAccountType:kOauth2ClientAccountType];
-    
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
     return YES;
 }
 

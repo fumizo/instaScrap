@@ -43,6 +43,7 @@
     homeTableView.dataSource = self;
     homeTableView.delegate = self;
     homeTableView.allowsMultipleSelection = YES;
+    //numberOfRowsInSectionとcellForRowAtIndexPathを宣言しないと落ちる
     
     SimpleAuth.configuration[@"instagram"] = @{@"client_id":CLIENT_ID, SimpleAuthRedirectURIKey:REDIRECT_URI};
     
@@ -128,6 +129,8 @@
     [self loginWithInstagram];
 }
 
+
+#pragma mark - TableView DataSource
 -(void)invalidateSession {
     [UserDataManager sharedManager].token = nil;
     
@@ -137,6 +140,95 @@
     for (NSHTTPCookie* cookie in instagramCookies) {
         [cookies deleteCookie:cookie];
     }
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return allObjects.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *cellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if (!cell) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    //MARK:UserImage
+    UIImageView *userImageView = (UIImageView *)[cell viewWithTag:1];
+    userImageView.layer.cornerRadius = userImageView.bounds.size.height/2.0f;
+    userImageView.clipsToBounds = YES;
+    
+    [userImageView sd_setImageWithURL:profileURLArray[indexPath.row]
+                     placeholderImage:[UIImage imageNamed:@"placeholder@2x.png"]
+                              options:SDWebImageCacheMemoryOnly
+                            completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                
+                                UIApplication *application = [UIApplication sharedApplication];
+                                application.networkActivityIndicatorVisible = NO;
+                                
+                                if (cacheType != SDImageCacheTypeMemory) {
+                                    
+                                    //Fade Animation
+                                    [UIView transitionWithView:userImageView
+                                                      duration:0.3f
+                                                       options:UIViewAnimationOptionTransitionCrossDissolve
+                                                    animations:^{
+                                                        userImageView.image = image;
+                                                    } completion:nil];
+                                    
+                                }
+                            }];
+    
+    //MARK:Photo
+    UIImageView *photoImageView = (UIImageView *)[cell viewWithTag:2];
+    
+    [photoImageView sd_setImageWithURL:photoURLArray[indexPath.row]
+                      placeholderImage:[UIImage imageNamed:@"placeholder@2x.png"]
+                               options:SDWebImageCacheMemoryOnly
+                             completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                 
+                                 UIApplication *application = [UIApplication sharedApplication];
+                                 application.networkActivityIndicatorVisible = NO;
+                                 
+                                 if (cacheType != SDImageCacheTypeMemory) {
+                                     
+                                     //Fade Animation
+                                     [UIView transitionWithView:photoImageView
+                                                       duration:0.3f
+                                                        options:UIViewAnimationOptionTransitionCrossDissolve
+                                                     animations:^{
+                                                         photoImageView.image = image;
+                                                     } completion:nil];
+                                     
+                                 }
+                             }];
+    
+    
+    UILabel *userNameLabel = (UILabel *)[cell viewWithTag:3];
+    userNameLabel.text = userNameArray[indexPath.row];
+    
+    UILabel *createdTimeLabel = (UILabel *)[cell viewWithTag:4];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy/MM/dd/HH:mm";
+    NSString *formattedDateString = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:[createdTimeArray[indexPath.row] intValue]]];
+    createdTimeLabel.text = formattedDateString;
+    
+    UILabel *numberOfLikeLabel = (UILabel *)[cell viewWithTag:5];
+    numberOfLikeLabel.text = [NSString stringWithFormat:@"♡%@件", numberOfLikeArray[indexPath.row]];
+    
+    //MARK:Like Button
+    UIButton *likeButton = (UIButton *)[cell viewWithTag:6];
+    [likeButton addTarget:self action:@selector(postLike:event:) forControlEvents:UIControlEventTouchUpInside];
+    
+    return cell;
 }
 
 
