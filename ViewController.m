@@ -56,10 +56,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    //reload account data
-    [super viewWillAppear:animated];
+- (void)viewWillAppear:(BOOL)animated
+{
+    if (self.tabBarController.tabBar.hidden == YES) {
+        self.tabBarController.tabBar.hidden = NO;
+    }
 }
+
+
 - (void)showInstagramPhotos {
     
     if (![SVProgressHUD isVisible]) {
@@ -237,8 +241,6 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-
-
 
 
 #pragma mark - Like
