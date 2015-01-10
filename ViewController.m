@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-
 #import "APIManager.h"
 #import "UserDataManager.h"
 
@@ -19,17 +18,10 @@
 #define NUMBER_OF_PHOTOS @"20"
 
 
-@interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface ViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 {
-    NSArray *allObjects;
     NSArray *photoURLArray;
-    NSArray *userNameArray;
-    NSArray *createdTimeArray;
-    NSArray *profileURLArray;
-    NSArray *numberOfLikeArray;
-    NSArray *idArray;
-    
-    IBOutlet UITableView *homeTableView;
+    IBOutlet UICollectionView *popularCollectionView;
 }
 
 @end
@@ -40,14 +32,13 @@
 {
     [super viewDidLoad];
     
-    homeTableView.dataSource = self;
-    homeTableView.delegate = self;
-    homeTableView.allowsMultipleSelection = YES;
-    //numberOfRowsInSectionとcellForRowAtIndexPathを宣言しないと落ちる
+    popularCollectionView.dataSource = self;
+    popularCollectionView.delegate = self;
     
     SimpleAuth.configuration[@"instagram"] = @{@"client_id":CLIENT_ID, SimpleAuthRedirectURIKey:REDIRECT_URI};
     
     [self showInstagramPhotos];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -74,22 +65,15 @@
     if ([UserDataManager sharedManager].token) {
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         
-        [manager GET:@"https://api.instagram.com/v1/users/self/feed" parameters:@{@"access_token":[UserDataManager sharedManager].token, @"count":NUMBER_OF_PHOTOS} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [manager GET:@"https://api.instagram.com/v1/media/popular" parameters:@{@"access_token":[UserDataManager sharedManager].token, @"count":NUMBER_OF_PHOTOS} success:^(AFHTTPRequestOperation *operation, id responseObject) {
             
-            allObjects = [responseObject valueForKey:@"data"];
-            
-            photoURLArray = [responseObject valueForKeyPath:@"data.images.standard_resolution.url"];
-            userNameArray = [responseObject valueForKeyPath:@"data.caption.from.full_name"];
-            createdTimeArray = [responseObject valueForKeyPath:@"data.caption.created_time"];
-            profileURLArray = [responseObject valueForKeyPath:@"data.caption.from.profile_picture"];
-            numberOfLikeArray = [responseObject valueForKeyPath:@"data.likes.count"];
-            idArray = [responseObject valueForKeyPath:@"data.id"];
+            photoURLArray = [responseObject valueForKeyPath:@"data.images.thumbnail.url"];
             
             if ([SVProgressHUD isVisible]) {
                 [SVProgressHUD dismiss];
             }
             
-            [homeTableView reloadData];
+            [popularCollectionView reloadData];
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error: %@", error);
@@ -99,6 +83,8 @@
         [self loginWithInstagram];
     }
 }
+
+
 
 - (void)loginWithInstagram{
     [SimpleAuth authorize:@"instagram" completion:^(id responseObject, NSError *error) {
@@ -117,6 +103,7 @@
 }
 
 
+
 - (IBAction)logOut
 {
     [self invalidateSession];
@@ -133,8 +120,6 @@
     [self loginWithInstagram];
 }
 
-
-#pragma mark - TableView DataSource
 -(void)invalidateSession {
     [UserDataManager sharedManager].token = nil;
     
@@ -146,134 +131,64 @@
     }
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+#pragma mark - CollectionView DataSource
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return allObjects.count;
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    
+    return photoURLArray.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSString *cellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+//Method to create cell at index path
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
+    UICollectionViewCell *cell;
     
-    //MARK:UserImage
-    UIImageView *userImageView = (UIImageView *)[cell viewWithTag:1];
-    userImageView.layer.cornerRadius = userImageView.bounds.size.height/2.0f;
-    userImageView.clipsToBounds = YES;
+    cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     
-    [userImageView sd_setImageWithURL:profileURLArray[indexPath.row]
-                     placeholderImage:[UIImage imageNamed:@"placeholder@2x.png"]
-                              options:SDWebImageCacheMemoryOnly
-                            completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                                
-                                UIApplication *application = [UIApplication sharedApplication];
-                                application.networkActivityIndicatorVisible = NO;
-                                
-                                if (cacheType != SDImageCacheTypeMemory) {
-                                    
-                                    //Fade Animation
-                                    [UIView transitionWithView:userImageView
-                                                      duration:0.3f
-                                                       options:UIViewAnimationOptionTransitionCrossDissolve
-                                                    animations:^{
-                                                        userImageView.image = image;
-                                                    } completion:nil];
-                                    
-                                }
-                            }];
     
-    //MARK:Photo
+    
+    //MARK:Thumbnail
     UIImageView *photoImageView = (UIImageView *)[cell viewWithTag:2];
     
-    [photoImageView sd_setImageWithURL:photoURLArray[indexPath.row]
-                      placeholderImage:[UIImage imageNamed:@"placeholder@2x.png"]
-                               options:SDWebImageCacheMemoryOnly
-                             completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                                 
-                                 UIApplication *application = [UIApplication sharedApplication];
-                                 application.networkActivityIndicatorVisible = NO;
-                                 
-                                 if (cacheType != SDImageCacheTypeMemory) {
-                                     
-                                     //Fade Animation
-                                     [UIView transitionWithView:photoImageView
-                                                       duration:0.3f
-                                                        options:UIViewAnimationOptionTransitionCrossDissolve
-                                                     animations:^{
-                                                         photoImageView.image = image;
-                                                     } completion:nil];
-                                     
-                                 }
-                             }];
+    NSURL *url = [NSURL URLWithString:photoURLArray[indexPath.item]];
     
+    [photoImageView sd_setImageWithURL:url];
     
-    UILabel *userNameLabel = (UILabel *)[cell viewWithTag:3];
-    userNameLabel.text = userNameArray[indexPath.row];
-    
-    UILabel *createdTimeLabel = (UILabel *)[cell viewWithTag:4];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"yyyy/MM/dd/HH:mm";
-    NSString *formattedDateString = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:[createdTimeArray[indexPath.row] intValue]]];
-    createdTimeLabel.text = formattedDateString;
-    
-    UILabel *numberOfLikeLabel = (UILabel *)[cell viewWithTag:5];
-    numberOfLikeLabel.text = [NSString stringWithFormat:@"♡%@件", numberOfLikeArray[indexPath.row]];
-    
-    //MARK:Like Button
-    UIButton *likeButton = (UIButton *)[cell viewWithTag:6];
-    [likeButton addTarget:self action:@selector(postLike:event:) forControlEvents:UIControlEventTouchUpInside];
+//    [photoImageView sd_setImageWithURL:url
+//                      placeholderImage:[UIImage imageNamed:@"placeholder@2x.png"]
+//                               options:SDWebImageCacheMemoryOnly
+//                             completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//                                 
+//                                 UIApplication *application = [UIApplication sharedApplication];
+//                                 application.networkActivityIndicatorVisible = NO;
+//                                 
+//                                 if (cacheType != SDImageCacheTypeMemory) {
+//                                     
+//                                     //Fade Animation
+//                                     [UIView transitionWithView:photoImageView
+//                                                       duration:0.3f
+//                                                        options:UIViewAnimationOptionTransitionCrossDissolve
+//                                                     animations:^{
+//                                                         photoImageView.image = image;
+//                                                     } completion:nil];
+//                                     
+//                                 }
+//                             }];
     
     return cell;
 }
 
-#pragma mark - TableView Delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-
-#pragma mark - Like
-
-- (void)postLike:(UIButton *)button event:(id)event
+#pragma mark - CollectionView Delegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSSet *touches = [event allTouches];
-    UITouch *touch = [touches anyObject];
-    CGPoint currentTouchPosition = [touch locationInView:homeTableView];
-    NSIndexPath *indexPath = [homeTableView indexPathForRowAtPoint: currentTouchPosition];
-    
-    if ([UserDataManager sharedManager].token) {
-        
-        /* For Using POST/DELETE API, You have to prepare IP Adress|Hashed-Client Secret */
-        NSString *param = @"200.15.1.1|7e3c45bc34f56fd8e762ee4590a53c8c2bbce27e967a85484712e5faa0191688";
-#warning This Paramater is a Sample param. You must change here, when you use.
-        
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-        [manager.requestSerializer setValue:param forHTTPHeaderField:@"X-Insta-Forwarded-For"];
-        NSString *mediaID = [NSString stringWithFormat:@"https://api.instagram.com/v1/media/%@/likes", idArray[indexPath.row]];
-        
-        [manager POST:mediaID parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@"%@", responseObject);
-            
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"Error: %@", error.description);
-        }];
-        
-    } else {
-        [self loginWithInstagram];
-    }
+    NSLog(@"tapped cell is == %d-%d",(int)indexPath.section, (int)indexPath.row);
 }
+
+
 
 
 @end

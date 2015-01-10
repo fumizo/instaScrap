@@ -49,7 +49,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - MBProgressHUD (~> 0.8)
   - NXOAuth2Client (from `https://github.com/takuran/OAuth2Client.git`)
-  - SDWebImage (~> 3.6)
+  - SDWebImage
   - SimpleAuth/Instagram
   - SVProgressHUD (HEAD)
 

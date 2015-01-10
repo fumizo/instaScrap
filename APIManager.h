@@ -15,6 +15,4 @@
 #define CLIENT_SECRET @"0f9b320aabdc449ba5b510f6287939da"
 #define REDIRECT_URI @"https://twitter.com/sun818sun"
 
-
-
 #endif
