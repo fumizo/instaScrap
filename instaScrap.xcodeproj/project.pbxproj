@@ -21,6 +21,7 @@
 		4F0A33081A3879B000147905 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0A33071A3879B000147905 /* UIKit.framework */; };
 		4F0A330A1A3879BC00147905 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0A33091A3879BC00147905 /* QuartzCore.framework */; };
 		4F0A330F1A387ED200147905 /* 10550967_10152442201708226_9066716860489306441_n.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F0A330E1A387ED200147905 /* 10550967_10152442201708226_9066716860489306441_n.jpg */; };
+		4F3ADA601A85FA3200DBA199 /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F3ADA5F1A85FA3200DBA199 /* placeholder@2x.png */; };
 		4F7A3CEE1A388E5F00465A61 /* JBCroppableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7A3CED1A388E5F00465A61 /* JBCroppableImageView.m */; };
 		4F8BCD421A55A33C00659A5E /* UserDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8BCD411A55A33C00659A5E /* UserDataManager.m */; };
 		4FD56FC71A4950F50069FAD4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FD56FC61A4950F50069FAD4 /* Security.framework */; };
@@ -59,6 +60,7 @@
 		4F0A33071A3879B000147905 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4F0A33091A3879BC00147905 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4F0A330E1A387ED200147905 /* 10550967_10152442201708226_9066716860489306441_n.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 10550967_10152442201708226_9066716860489306441_n.jpg; path = ../10550967_10152442201708226_9066716860489306441_n.jpg; sourceTree = "<group>"; };
+		4F3ADA5F1A85FA3200DBA199 /* placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder@2x.png"; sourceTree = "<group>"; };
 		4F7A3CEC1A388E5F00465A61 /* JBCroppableImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JBCroppableImageView.h; path = ../instaScrap/JBCroppableImageView.h; sourceTree = "<group>"; };
 		4F7A3CED1A388E5F00465A61 /* JBCroppableImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JBCroppableImageView.m; path = ../instaScrap/JBCroppableImageView.m; sourceTree = "<group>"; };
 		4F8BCD3F1A5593DF00659A5E /* APIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = APIManager.h; path = ../APIManager.h; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 		4F0A32CA1A38764800147905 = {
 			isa = PBXGroup;
 			children = (
+				4F3ADA5F1A85FA3200DBA199 /* placeholder@2x.png */,
 				4F0A33011A38794B00147905 /* JBCroppableView */,
 				4F0A32D51A38764800147905 /* instaScrap */,
 				4F0A32EF1A38764800147905 /* instaScrapTests */,
@@ -286,6 +289,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F3ADA601A85FA3200DBA199 /* placeholder@2x.png in Resources */,
 				4F0A32E21A38764800147905 /* Main.storyboard in Resources */,
 				4F0A32E71A38764800147905 /* LaunchScreen.xib in Resources */,
 				4F0A330F1A387ED200147905 /* 10550967_10152442201708226_9066716860489306441_n.jpg in Resources */,
@@ -470,7 +474,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = instaScrap/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -482,7 +486,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = instaScrap/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

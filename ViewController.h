@@ -12,7 +12,9 @@
 #import "AFNetworking.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController{
+    IBOutlet UICollectionView * colle;
+}
 
 @property (nonatomic) NSString *instagramToken;
 

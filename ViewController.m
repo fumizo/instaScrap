@@ -15,12 +15,12 @@
 #import <SimpleAuth.h>
 #import "SVProgressHUD.h"
 
-#define NUMBER_OF_PHOTOS @"20"
+#define NUMBER_OF_PHOTOS @"66"
 
 
 @interface ViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 {
-    NSArray *photoURLArray;
+    NSArray *photoURLArray; //utableなら追加が可能
     IBOutlet UICollectionView *popularCollectionView;
 }
 
@@ -54,6 +54,59 @@
     }
 }
 
+- (void)showInstagramPhotos:(NSString *)max_like_id
+                    atonankai:(int) atonankai{
+    
+    if (![SVProgressHUD isVisible]) {
+        [SVProgressHUD showWithStatus:@"読み込み中..." maskType:SVProgressHUDMaskTypeBlack];
+    }
+    
+    
+    if ([UserDataManager sharedManager].token) {
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        
+        NSLog(@"token::%@", [UserDataManager sharedManager].token);
+        [manager GET:@"https://api.instagram.com/v1/users/self/media/liked" parameters:@{@"access_token":[UserDataManager sharedManager].token, @"count":NUMBER_OF_PHOTOS,@"max_like_id":max_like_id} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            //34枚目以降から33枚もってくる
+            
+            NSArray *res = [responseObject valueForKeyPath:@"data.images.thumbnail.url"];
+            NSLog(@"res=%@",res);
+            NSLog(@"photoarray=%@",photoURLArray);
+            photoURLArray = [photoURLArray arrayByAddingObjectsFromArray:res]; //photourlarryに足したものをphotourlarrayにする
+//            for(NSString *str in res){
+//                [photoURLArray addObject:str];
+//            }
+            NSLog(@"追加photoarray=%@",photoURLArray);
+
+            if ([SVProgressHUD isVisible]) {
+                [SVProgressHUD dismiss];
+            }
+            NSLog(@"画像枚数: %lu", (unsigned long)photoURLArray.count);
+            NSLog(@"画像: %@", photoURLArray);
+            //            NSLog(@"内容: %@", responseObject);
+            NSLog(@"メディアID: %@",[responseObject valueForKeyPath:@"id"]);
+            NSLog(@"%@", [responseObject valueForKeyPath:@"data.id"]);
+            NSArray *arr = [responseObject valueForKeyPath:@"data.id"];
+            NSLog(@"最後のid%@", arr[arr.count -1]);
+            
+            [popularCollectionView reloadData];
+            if (atonankai>0) {
+                //atonankaiが0よりお大きかったら自分自信をもう一度まわす、atonankaiを1つ減らす
+                [self showInstagramPhotos:arr[arr.count -1] atonankai:atonankai-1]; //最後のメディアidをこの関数に受け渡す
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error: %@", error);
+        }];
+        
+    } else {
+        [self loginWithInstagram];
+    }
+    
+    //collection viewの高さを知る
+    NSLog(@"colle height%f", colle.contentSize.height);
+
+}
+
 
 - (void)showInstagramPhotos {
     
@@ -65,14 +118,23 @@
     if ([UserDataManager sharedManager].token) {
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         
-        [manager GET:@"https://api.instagram.com/v1/media/popular" parameters:@{@"access_token":[UserDataManager sharedManager].token, @"count":NUMBER_OF_PHOTOS} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"token::%@", [UserDataManager sharedManager].token);
+        [manager GET:@"https://api.instagram.com/v1/users/self/media/liked" parameters:@{@"access_token":[UserDataManager sharedManager].token, @"count":NUMBER_OF_PHOTOS} success:^(AFHTTPRequestOperation *operation, id responseObject) {
             
             photoURLArray = [responseObject valueForKeyPath:@"data.images.thumbnail.url"];
             
             if ([SVProgressHUD isVisible]) {
                 [SVProgressHUD dismiss];
             }
-            
+            NSLog(@"画像枚数: %lu", (unsigned long)photoURLArray.count);
+            NSLog(@"画像: %@", photoURLArray);
+//            NSLog(@"内容: %@", responseObject);
+            NSLog(@"メディアID: %@",[responseObject valueForKeyPath:@"id"]);
+            NSLog(@"%@", [responseObject valueForKeyPath:@"data.id"]);
+            NSArray *arr = [responseObject valueForKeyPath:@"data.id"];
+            NSLog(@"最後のid%@", arr[arr.count -1]);
+            [self showInstagramPhotos:arr[arr.count -1] atonankai:3]; //最後のメディアidをこの関数に受け渡す
+                                                                      //atonankaiの数だけまわす
             [popularCollectionView reloadData];
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -154,9 +216,15 @@
     //MARK:Thumbnail
     UIImageView *photoImageView = (UIImageView *)[cell viewWithTag:2];
     
+    NSLog(@"%@", photoURLArray[indexPath.item]);
     NSURL *url = [NSURL URLWithString:photoURLArray[indexPath.item]];
     
+    
     [photoImageView sd_setImageWithURL:url];
+    
+//    [photoImageView sd_setImageWithURL:url completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    
+//    }];
     
 //    [photoImageView sd_setImageWithURL:url
 //                      placeholderImage:[UIImage imageNamed:@"placeholder@2x.png"]
@@ -179,6 +247,27 @@
 //                                 }
 //                             }];
     
+    [photoImageView sd_setImageWithURL:photoURLArray[indexPath.row]
+                      placeholderImage:[UIImage imageNamed:@"placeholder@2x.png"]
+                               options:SDWebImageCacheMemoryOnly
+                             completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                 
+                                 UIApplication *application = [UIApplication sharedApplication];
+                                 application.networkActivityIndicatorVisible = NO;
+                                 
+                                 if (cacheType != SDImageCacheTypeMemory) {
+                                     
+                                     //Fade Animation
+                                     [UIView transitionWithView:photoImageView
+                                                       duration:0.3f
+                                                        options:UIViewAnimationOptionTransitionCrossDissolve
+                                                     animations:^{
+                                                         photoImageView.image = image;
+                                                     } completion:nil];
+                                     
+                                 }
+                             }];
+    
     return cell;
 }
 
@@ -186,6 +275,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"tapped cell is == %d-%d",(int)indexPath.section, (int)indexPath.row);
+    //画像をタップしたときのやつはここ
 }
 
 

@@ -1,11 +1,11 @@
 PODS:
   - AFNetworking (2.5.0):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-    - AFNetworking/UIKit
+    - AFNetworking/NSURLConnection (= 2.5.0)
+    - AFNetworking/NSURLSession (= 2.5.0)
+    - AFNetworking/Reachability (= 2.5.0)
+    - AFNetworking/Security (= 2.5.0)
+    - AFNetworking/Serialization (= 2.5.0)
+    - AFNetworking/UIKit (= 2.5.0)
   - AFNetworking/NSURLConnection (2.5.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
@@ -25,15 +25,15 @@ PODS:
   - ISO8601 (0.1.1)
   - MBProgressHUD (0.9)
   - NXOAuth2Client (1.2.6)
-  - ReactiveCocoa (2.4.2):
-    - ReactiveCocoa/UI
-  - ReactiveCocoa/Core (2.4.2):
+  - ReactiveCocoa (2.4.4):
+    - ReactiveCocoa/UI (= 2.4.4)
+  - ReactiveCocoa/Core (2.4.4):
     - ReactiveCocoa/no-arc
-  - ReactiveCocoa/no-arc (2.4.2)
-  - ReactiveCocoa/UI (2.4.2):
+  - ReactiveCocoa/no-arc (2.4.4)
+  - ReactiveCocoa/UI (2.4.4):
     - ReactiveCocoa/Core
   - SDWebImage (3.7.1):
-    - SDWebImage/Core
+    - SDWebImage/Core (= 3.7.1)
   - SDWebImage/Core (3.7.1)
   - SimpleAuth/Core (0.3.6):
     - CMDQueryStringSerialization
@@ -57,15 +57,20 @@ EXTERNAL SOURCES:
   NXOAuth2Client:
     :git: https://github.com/takuran/OAuth2Client.git
 
+CHECKOUT OPTIONS:
+  NXOAuth2Client:
+    :commit: 6d38114453f1393a3c7527acb4fb0c7e4b58c580
+    :git: https://github.com/takuran/OAuth2Client.git
+
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
   CMDQueryStringSerialization: bc824b96c08a3277d00c71504e13c9fa18c6b451
   ISO8601: a6afce5fbe854024802367c814fac4aa8d3586f9
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   NXOAuth2Client: 7f20ac467d955d96476871cc1232e00ee2975b80
-  ReactiveCocoa: 8418a82b67af2f1b7587baf29c329040a23c2063
+  ReactiveCocoa: 31119068e3dde866bd257cf74e1f06b4023bf387
   SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
   SimpleAuth: 0664e22bff27c7f5b169254b421b1c761d002f65
   SVProgressHUD: da7a49e789af645d9279ffbca62318945a832438
 
-COCOAPODS: 0.34.4
+COCOAPODS: 0.35.0
