@@ -15,7 +15,7 @@
 #import <SimpleAuth.h>
 #import "SVProgressHUD.h"
 
-#define NUMBER_OF_PHOTOS @"66"
+#define NUMBER_OF_PHOTOS @"99"
 
 
 @interface ViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
@@ -164,7 +164,21 @@
     }];
 }
 
-
+//リロードボタンを生成
+-(void)makeReloadButton{
+    UIImage * buttonImg = [UIImage imageNamed:@"octagon_sound_on.png"];  // ボタンにする画像を生成する
+    [reLoad setBackgroundImage:buttonImg forState:UIControlStateNormal];  // 画像をセットする
+    
+    reLoad = [UIButton buttonWithType:UIButtonTypeCustom];
+    [reLoad setBackgroundImage:buttonImg forState:UIControlStateNormal];  // 画像をセットする
+    [reLoad addTarget:self
+                       action:@selector(reLoad:) forControlEvents:UIControlEventTouchUpInside];
+//    reLoad.frame = CGRectMake( ここにcolleの高さ（一番高い）, 200, 80, 80);   //位置、大きさ
+    [self.view addSubview:reLoad];
+}
+//リロードボタンのメソッド
+-(void)reLoad:(UIButton *)button{
+}
 
 - (IBAction)logOut
 {

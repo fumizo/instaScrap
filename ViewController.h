@@ -14,6 +14,8 @@
 
 @interface ViewController : UIViewController{
     IBOutlet UICollectionView * colle;
+    
+    UIButton * reLoad;
 }
 
 @property (nonatomic) NSString *instagramToken;
