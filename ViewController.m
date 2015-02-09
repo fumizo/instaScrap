@@ -166,15 +166,15 @@
 
 //リロードボタンを生成
 -(void)makeReloadButton{
-    UIImage * buttonImg = [UIImage imageNamed:@"octagon_sound_on.png"];  // ボタンにする画像を生成する
+    UIImage * buttonImg = [UIImage imageNamed:@"reload.png"];  // ボタンにする画像を生成する
     [reLoad setBackgroundImage:buttonImg forState:UIControlStateNormal];  // 画像をセットする
     
     reLoad = [UIButton buttonWithType:UIButtonTypeCustom];
     [reLoad setBackgroundImage:buttonImg forState:UIControlStateNormal];  // 画像をセットする
     [reLoad addTarget:self
                        action:@selector(reLoad:) forControlEvents:UIControlEventTouchUpInside];
-//    reLoad.frame = CGRectMake( ここにcolleの高さ（一番高い）, 200, 80, 80);   //位置、大きさ
-    [self.view addSubview:reLoad];
+    reLoad.frame = CGRectMake( 3234, 200, 80, 80);   //位置、大きさ
+    [colle addSubview:reLoad];
 }
 //リロードボタンのメソッド
 -(void)reLoad:(UIButton *)button{
