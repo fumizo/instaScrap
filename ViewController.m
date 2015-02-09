@@ -93,6 +93,8 @@
             if (atonankai>0) {
                 //atonankaiが0よりお大きかったら自分自信をもう一度まわす、atonankaiを1つ減らす
                 [self showInstagramPhotos:arr[arr.count -1] atonankai:atonankai-1]; //最後のメディアidをこの関数に受け渡す
+            }else{
+                [self makeReloadButton];
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error: %@", error);
@@ -173,7 +175,7 @@
     [reLoad setBackgroundImage:buttonImg forState:UIControlStateNormal];  // 画像をセットする
     [reLoad addTarget:self
                        action:@selector(reLoad:) forControlEvents:UIControlEventTouchUpInside];
-    reLoad.frame = CGRectMake( 3234, 200, 80, 80);   //位置、大きさ
+    reLoad.frame = CGRectMake(3234-80, 320-80, 80, 80);   //位置、大きさ
     [colle addSubview:reLoad];
 }
 //リロードボタンのメソッド
