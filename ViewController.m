@@ -22,6 +22,8 @@
 {
     NSArray *photoURLArray; //utableなら追加が可能
     IBOutlet UICollectionView *popularCollectionView;
+    NSString *lastPhotoID;
+    BOOL isLoading;
 }
 
 @end
@@ -56,6 +58,7 @@
 
 - (void)showInstagramPhotos:(NSString *)max_like_id
                     atonankai:(int) atonankai{
+    NSLog(@"最初のcolle height%f", colle.contentSize.height);
     
     if (![SVProgressHUD isVisible]) {
         [SVProgressHUD showWithStatus:@"読み込み中..." maskType:SVProgressHUDMaskTypeBlack];
@@ -81,20 +84,25 @@
             if ([SVProgressHUD isVisible]) {
                 [SVProgressHUD dismiss];
             }
-            NSLog(@"画像枚数: %lu", (unsigned long)photoURLArray.count);
-            NSLog(@"画像: %@", photoURLArray);
-            //            NSLog(@"内容: %@", responseObject);
-            NSLog(@"メディアID: %@",[responseObject valueForKeyPath:@"id"]);
-            NSLog(@"%@", [responseObject valueForKeyPath:@"data.id"]);
+//            NSLog(@"画像枚数: %lu", (unsigned long)photoURLArray.count);
+//            NSLog(@"画像: %@", photoURLArray);
+//            //            NSLog(@"内容: %@", responseObject);
+//            NSLog(@"メディアID: %@",[responseObject valueForKeyPath:@"id"]);
+//            NSLog(@"%@", [responseObject valueForKeyPath:@"data.id"]);
             NSArray *arr = [responseObject valueForKeyPath:@"data.id"];
-            NSLog(@"最後のid%@", arr[arr.count -1]);
+//            NSLog(@"最後のid%@", arr[arr.count -1]);
             
             [popularCollectionView reloadData];
             if (atonankai>0) {
                 //atonankaiが0よりお大きかったら自分自信をもう一度まわす、atonankaiを1つ減らす
                 [self showInstagramPhotos:arr[arr.count -1] atonankai:atonankai-1]; //最後のメディアidをこの関数に受け渡す
             }else{
+                isLoading = NO;
                 [self makeReloadButton];
+                if (arr.count != 0) {
+                    lastPhotoID = arr[arr.count -1];
+                }
+                NSLog(@"lastPhotoID is ..........%@",lastPhotoID);
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error: %@", error);
@@ -106,7 +114,6 @@
     
     //collection viewの高さを知る
     NSLog(@"colle height%f", colle.contentSize.height);
-
 }
 
 
@@ -115,8 +122,7 @@
     if (![SVProgressHUD isVisible]) {
         [SVProgressHUD showWithStatus:@"読み込み中..." maskType:SVProgressHUDMaskTypeBlack];
     }
-    
-    
+
     if ([UserDataManager sharedManager].token) {
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         
@@ -137,6 +143,7 @@
             NSLog(@"最後のid%@", arr[arr.count -1]);
             [self showInstagramPhotos:arr[arr.count -1] atonankai:3]; //最後のメディアidをこの関数に受け渡す
                                                                       //atonankaiの数だけまわす
+
             [popularCollectionView reloadData];
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -168,19 +175,51 @@
 
 //リロードボタンを生成
 -(void)makeReloadButton{
-    UIImage * buttonImg = [UIImage imageNamed:@"reload.png"];  // ボタンにする画像を生成する
-    [reLoad setBackgroundImage:buttonImg forState:UIControlStateNormal];  // 画像をセットする
+//    UIImage * buttonImg = [UIImage imageNamed:@"reload.png"];  // ボタンにする画像を生成する
+//    [reLoad setBackgroundImage:buttonImg forState:UIControlStateNormal];  // 画像をセットする
     
     reLoad = [UIButton buttonWithType:UIButtonTypeCustom];
-    [reLoad setBackgroundImage:buttonImg forState:UIControlStateNormal];  // 画像をセットする
+//    [reLoad setImage:buttonImg forState:UIControlStateNormal];
+    [reLoad setBackgroundColor:[UIColor redColor]];             //背景色
+    [reLoad setTitle:@"reLoad" forState:UIControlStateNormal];  //タイトルつける
+    [reLoad setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal]; //有効時
+    [reLoad setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted]; //ハイライト時
     [reLoad addTarget:self
                        action:@selector(reLoad:) forControlEvents:UIControlEventTouchUpInside];
-    reLoad.frame = CGRectMake(3234-80, 320-80, 80, 80);   //位置、大きさ
+//    reLoad.frame = CGRectMake(320-80, colle.contentSize.height+1078-100, 80, 80);   //位置、大きさ
+    reLoad.frame = CGRectMake(0, colle.contentSize.height+1078-100, colle.contentSize.width , 80);   //位置、大きさ
+
+//    reLoad.frame = CGRectMake(200, 100, 80, 80);
+    
     [colle addSubview:reLoad];
+//    [self.view addSubview:reLoad];
+//    [self.view bringSubviewToFront:reLoad];
+    
+    //フッターをつくるよ
+    UIEdgeInsets insets = colle.contentInset; //collectionViewをのばした(bottom)中身はずれない
+    insets.bottom += 80;
+    colle.contentInset = insets;
 }
+
 //リロードボタンのメソッド
--(void)reLoad:(UIButton *)button{
+-(void)reLoad:(UIButton *)button {
+    [self showInstagramPhotos:lastPhotoID atonankai:2]; //最後のメディアidをこの関数に受け渡す
 }
+
+//スクロールしていってリロードする
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (colle.contentSize.height - [UIScreen mainScreen].bounds.size.height - 50.0 < scrollView.contentOffset.y) {
+        
+        if (!isLoading) {
+            isLoading = YES;
+            //スクロールして行ってリロードする。50は、ギリギリすぎるとダメだから
+            [self showInstagramPhotos:lastPhotoID atonankai:2]; //最後のメディアidをこの関数に受け渡す
+        }
+        
+    }
+}
+
 
 - (IBAction)logOut
 {
@@ -293,8 +332,6 @@
     NSLog(@"tapped cell is == %d-%d",(int)indexPath.section, (int)indexPath.row);
     //画像をタップしたときのやつはここ
 }
-
-
 
 
 @end
