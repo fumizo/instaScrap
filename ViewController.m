@@ -16,7 +16,10 @@
 #import "SVProgressHUD.h"
 
 #define NUMBER_OF_PHOTOS @"99"
-
+/*============やること================
+ 今上限まで取り込んでるけど、少ないから、メディアidをユーザーデフォルトに保存とかしたらええんとちゃうのかいな
+ 限界まで読み込んでるのにずっとfor文回しちゃってるから、0になったらやめるっていうのをかくの
+ */
 
 @interface ViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 {
@@ -98,7 +101,7 @@
                 [self showInstagramPhotos:arr[arr.count -1] atonankai:atonankai-1]; //最後のメディアidをこの関数に受け渡す
             }else{
                 isLoading = NO;
-                [self makeReloadButton];
+//                [self makeReloadButton];
                 if (arr.count != 0) {
                     lastPhotoID = arr[arr.count -1];
                 }
@@ -173,11 +176,12 @@
     }];
 }
 
+//ここでフッターとボタン作ってたけど、いらなくなった。
+/*
 //リロードボタンを生成
 -(void)makeReloadButton{
 //    UIImage * buttonImg = [UIImage imageNamed:@"reload.png"];  // ボタンにする画像を生成する
 //    [reLoad setBackgroundImage:buttonImg forState:UIControlStateNormal];  // 画像をセットする
-    
     reLoad = [UIButton buttonWithType:UIButtonTypeCustom];
 //    [reLoad setImage:buttonImg forState:UIControlStateNormal];
     [reLoad setBackgroundColor:[UIColor redColor]];             //背景色
@@ -201,10 +205,12 @@
     colle.contentInset = insets;
 }
 
+
 //リロードボタンのメソッド
 -(void)reLoad:(UIButton *)button {
     [self showInstagramPhotos:lastPhotoID atonankai:2]; //最後のメディアidをこの関数に受け渡す
 }
+ */
 
 //スクロールしていってリロードする
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
