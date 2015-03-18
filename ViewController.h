@@ -16,6 +16,7 @@
     IBOutlet UICollectionView * colle;
     
     UIButton * reLoad;
+    NSString *photoNum;
 }
 
 @property (nonatomic) NSString *instagramToken;

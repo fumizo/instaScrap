@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "APIManager.h"
 #import "UserDataManager.h"
+#import "NextViewController.h"
 
 #import "AFNetworking.h"
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -176,41 +177,6 @@
     }];
 }
 
-//ここでフッターとボタン作ってたけど、いらなくなった。
-/*
-//リロードボタンを生成
--(void)makeReloadButton{
-//    UIImage * buttonImg = [UIImage imageNamed:@"reload.png"];  // ボタンにする画像を生成する
-//    [reLoad setBackgroundImage:buttonImg forState:UIControlStateNormal];  // 画像をセットする
-    reLoad = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [reLoad setImage:buttonImg forState:UIControlStateNormal];
-    [reLoad setBackgroundColor:[UIColor redColor]];             //背景色
-    [reLoad setTitle:@"reLoad" forState:UIControlStateNormal];  //タイトルつける
-    [reLoad setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal]; //有効時
-    [reLoad setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted]; //ハイライト時
-    [reLoad addTarget:self
-                       action:@selector(reLoad:) forControlEvents:UIControlEventTouchUpInside];
-//    reLoad.frame = CGRectMake(320-80, colle.contentSize.height+1078-100, 80, 80);   //位置、大きさ
-    reLoad.frame = CGRectMake(0, colle.contentSize.height+1078-100, colle.contentSize.width , 80);   //位置、大きさ
-
-//    reLoad.frame = CGRectMake(200, 100, 80, 80);
-    
-    [colle addSubview:reLoad];
-//    [self.view addSubview:reLoad];
-//    [self.view bringSubviewToFront:reLoad];
-    
-    //フッターをつくるよ
-    UIEdgeInsets insets = colle.contentInset; //collectionViewをのばした(bottom)中身はずれない
-    insets.bottom += 80;
-    colle.contentInset = insets;
-}
-
-
-//リロードボタンのメソッド
--(void)reLoad:(UIButton *)button {
-    [self showInstagramPhotos:lastPhotoID atonankai:2]; //最後のメディアidをこの関数に受け渡す
-}
- */
 
 //スクロールしていってリロードする
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -220,7 +186,7 @@
         if (!isLoading) {
             isLoading = YES;
             //スクロールして行ってリロードする。50は、ギリギリすぎるとダメだから
-            [self showInstagramPhotos:lastPhotoID atonankai:2]; //最後のメディアidをこの関数に受け渡す
+            [self showInstagramPhotos:lastPhotoID atonankai:2]; //最後のidをこの関数に受け渡す
         }
         
     }
@@ -337,6 +303,12 @@
 {
     NSLog(@"tapped cell is == %d-%d",(int)indexPath.section, (int)indexPath.row);
     //画像をタップしたときのやつはここ
+    
+    photoNum = photoURLArray[indexPath.item];  //何番目をタップしたか
+    
+    NextViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"next"];
+    [self.navigationController pushViewController:vc animated:YES];
+
 }
 
 
