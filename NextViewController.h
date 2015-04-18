@@ -8,6 +8,15 @@
 
 #import "ViewController.h"
 
-@interface NextViewController : ViewController
+@interface NextViewController : ViewController<UITableViewDataSource, UITableViewDelegate>{
+    
+    
+    IBOutlet UITableView *likeTableView;
+    
+    NSString *selectPhotoNumber;
+
+}
+
+@property(nonatomic,assign) NSString* selectPhotoNum;
 
 @end

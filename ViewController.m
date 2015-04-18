@@ -43,9 +43,16 @@
     
     SimpleAuth.configuration[@"instagram"] = @{@"client_id":CLIENT_ID, SimpleAuthRedirectURIKey:REDIRECT_URI};
     
-    [self showInstagramPhotos];
+    
+//    [self showInstagramPhotos];
 
 }
+
+//-(void)viewDidAppear:(BOOL)animated{
+//    [self showInstagramPhotos];
+//}
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -73,6 +80,11 @@
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         
         NSLog(@"token::%@", [UserDataManager sharedManager].token);
+        
+        if (manager) {
+            return;
+        }
+        
         [manager GET:@"https://api.instagram.com/v1/users/self/media/liked" parameters:@{@"access_token":[UserDataManager sharedManager].token, @"count":NUMBER_OF_PHOTOS,@"max_like_id":max_like_id} success:^(AFHTTPRequestOperation *operation, id responseObject) {
             //34枚目以降から33枚もってくる
             
@@ -306,9 +318,17 @@
     
     photoNum = photoURLArray[indexPath.item];  //何番目をタップしたか
     
-    NextViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"next"];
-    [self.navigationController pushViewController:vc animated:YES];
+    NSLog(@"画像の名前は%@",photoNum);
+    //遷移する
+    
+    NextViewController *nextVC = [self.storyboard instantiateViewControllerWithIdentifier:@"next"];
+    [self.navigationController pushViewController:nextVC animated:YES];
 
+//    [self performSegueWithIdentifier:@"gonext" sender:self];
+    
+    nextVC.selectPhotoNum = photoNum;
+     
+    
 }
 
 
